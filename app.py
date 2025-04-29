@@ -28,7 +28,7 @@ class IndexWorker(QThread):
         # Create index (or open existing)
         if not os.path.exists(self.indexdir):
             os.mkdir(self.indexdir)
-            schema = Schema(path=ID(stored=True), content=TEXT(stored=True))
+            schema = Schema(path=ID(stored=True, unique=True), content=TEXT(stored=True))
             idx = create_in(self.indexdir, schema)
         else:
             idx = open_dir(self.indexdir)
