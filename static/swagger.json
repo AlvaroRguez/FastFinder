@@ -1,0 +1,89 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "FastFinder API",
+    "description": "API para buscar e indexar archivos",
+    "version": "1.1.0"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/index": {
+      "post": {
+        "summary": "Indexar archivos",
+        "description": "Inicia el proceso síncrono de indexación de archivos según la configuración.",
+        "responses": {
+          "200": {
+            "description": "Indexación completada",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "Indexing completed"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search": {
+      "get": {
+        "summary": "Buscar archivos",
+        "description": "Busca archivos en el índice y, si se solicita, transforma las rutas locales a URLs.",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Texto de búsqueda"
+          },
+          {
+            "name": "transform",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "default": false,
+            "description": "Si es true, aplica transform_path_to_url a las rutas de los resultados"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Resultados de la búsqueda",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "results": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": [
+                      {
+                        "type": "string",
+                        "description": "URL o ruta de archivo"
+                      },
+                      {
+                        "type": "integer",
+                        "description": "Número de línea"
+                      },
+                      {
+                        "type": "string",
+                        "description": "Fragmento de código"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Parámetro de consulta 'query' requerido"
+          }
+        }
+      }
+    }
+  }
+}

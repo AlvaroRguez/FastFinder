@@ -1,2 +1,15 @@
-PyQt5==5.15.9
-Whoosh==2.7.4
+# Dependencias principales
+PyQt5==5.15.9          # Interfaz gráfica de usuario
+Whoosh==2.7.4          # Motor de indexación y búsqueda
+Flask==2.0.1           # Framework web para la API REST
+
+# Extensiones de Flask
+flask-cors==3.0.10      # Soporte para Cross-Origin Resource Sharing
+flask-swagger-ui==3.36.0 # Interfaz Swagger para documentación de API
+
+# Utilidades del sistema
+configparser==5.0.2     # Manejo de archivos de configuración
+
+# Dependencias de desarrollo
+pytest==6.2.5           # Framework para pruebas unitarias
+pylint==2.8.3           # Análisis estático de código

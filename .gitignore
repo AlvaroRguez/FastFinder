@@ -1,1 +1,4 @@
 /indexdir
+/fastfinder-web
+/__pycache__
+/config.ini
